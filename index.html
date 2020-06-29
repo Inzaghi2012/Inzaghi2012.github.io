@@ -10,13 +10,15 @@
 <body>
 <h1>DBS 5G Wireless</h1>
 <select id="transType" onchange="makeCode()">
-	<option value="Cash">Cash Withdraw</option>
-	<option value="card">Issue Card</option>
-    <option value="token">Issue Token</option>
+	<option value="Withdraw">Cash Withdraw</option>
+	<option value="Deposit">Cash Deposit</option>
+	<option value="Card">Issue Card</option>
+    <option value="Token">Issue Token</option>
 </select>
 	<br />
 		<br />
-<input id="text" type="text" value="Please Enter Your NRIC" style="width:20%" /><br />
+Amount <input id="textAmount" type="text" value="Please Enter Amount" style="width:20%" /><br />		
+NRIC   <input id="text" type="text" value="Please Enter Your NRIC" style="width:20%" /><br />
 <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
 
 <script type="text/javascript">
@@ -29,6 +31,7 @@ function makeCode () {
 	var elText = document.getElementById("text");
 	var trans = document.getElementById("transType");
 	var tran = trans.options[trans.selectedIndex].value;
+	var amount = document.getElementById("textAmount");
 	
 	if (!elText.value) {
 		alert("Input a text");
@@ -43,12 +46,22 @@ function makeCode () {
 	}
 	
 	
-	qrcode.makeCode(elText.value+"|"+tran);
+	qrcode.makeCode(elText.value+"|"+tran+"|"+amount.value);
 }
 
 makeCode();
 
 $("#text").
+	on("blur", function () {
+		makeCode();
+	}).
+	on("keydown", function (e) {
+		if (e.keyCode == 13) {
+			makeCode();
+		}
+	});
+	
+	$("#textAmount").
 	on("blur", function () {
 		makeCode();
 	}).

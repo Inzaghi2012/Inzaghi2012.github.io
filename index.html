@@ -1,14 +1,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
 <head>
-<title>Cross-Browser QRCode generator for Javascript</title>
+<title>DBS 5G Wireless</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
 <script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript" src="qrcode.js"></script>
 </head>
 <body>
-<input id="text" type="text" value="http://jindo.dev.naver.com/collie" style="width:80%" /><br />
+<h1>DBS 5G Wireless</h1>
+<select id="transType" onchange="makeCode()">
+	<option value="Cash">Cash Withdraw</option>
+	<option value="card">Issue Card</option>
+    <option value="token">Issue Token</option>
+</select>
+	<br />
+		<br />
+<input id="text" type="text" value="Please Enter Your NRIC" style="width:20%" /><br />
 <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
 
 <script type="text/javascript">
@@ -19,6 +27,8 @@ var qrcode = new QRCode(document.getElementById("qrcode"), {
 
 function makeCode () {		
 	var elText = document.getElementById("text");
+	var trans = document.getElementById("transType");
+	var tran = trans.options[trans.selectedIndex].value;
 	
 	if (!elText.value) {
 		alert("Input a text");
@@ -26,7 +36,14 @@ function makeCode () {
 		return;
 	}
 	
-	qrcode.makeCode(elText.value);
+	if (!tran) {
+		alert("select a valuet");
+		elText.focus();
+		return;
+	}
+	
+	
+	qrcode.makeCode(elText.value+"|"+tran);
 }
 
 makeCode();

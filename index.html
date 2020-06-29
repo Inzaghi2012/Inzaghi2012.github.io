@@ -9,16 +9,24 @@
 </head>
 <body>
 <h1>DBS 5G Wireless</h1>
-<select id="transType" onchange="makeCode()">
+Transaction Type <br />
+<select id="transType" onchange="makeCode()" style="width:20%">
 	<option value="Withdraw">Cash Withdraw</option>
 	<option value="Deposit">Cash Deposit</option>
 	<option value="Card">Issue Card</option>
     <option value="Token">Issue Token</option>
 </select>
 	<br />
-		<br />
-Amount <input id="textAmount" type="text" value="Please Enter Amount" style="width:20%" /><br />		
-NRIC   <input id="text" type="text" value="Please Enter Your NRIC" style="width:20%" /><br />
+<div id="divAmount">
+Amount <br />
+<input id="textAmount" type="text" value="Please Enter Amount" style="width:20%" />
+<br />
+</div>	
+<div id="divName">
+NRIC   
+<br /><input id="text" type="text" value="Please Enter Your NRIC" style="width:20%" />
+<br />
+</div>
 <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
 
 <script type="text/javascript">
@@ -32,6 +40,7 @@ function makeCode () {
 	var trans = document.getElementById("transType");
 	var tran = trans.options[trans.selectedIndex].value;
 	var amount = document.getElementById("textAmount");
+	var divAmount = document.getElementById("divAmount");
 	
 	if (!elText.value) {
 		alert("Input a text");
@@ -43,6 +52,15 @@ function makeCode () {
 		alert("select a valuet");
 		//elText.focus();
 		return;
+	}
+	
+	if(tran == "Withdraw" || tran == "Deposit")
+	{
+		divAmount.style.display = "none";
+	}
+	else
+	{
+		divAmount.style.display = "block"
 	}
 	
 	

@@ -54,7 +54,7 @@ function makeCode () {
 		return;
 	}
 	
-	if(tran == "Withdraw" || tran == "Deposit")
+	if(tran != "Withdraw" || tran != "Deposit")
 	{
 		divAmount.style.display = "none";
 	}

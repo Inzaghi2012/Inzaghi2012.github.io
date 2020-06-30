@@ -9,23 +9,28 @@
 </head>
 <body>
 <h1>DBS 5G Wireless</h1>
- <img src="DBS-POSB.jpg" alt="Show img" width="350" height="150"> <br /><br />
-Transaction Type <br />
-<select id="transType" onchange="makeCode()" style="width:20%">
-	<option value="Withdraw">Cash Withdraw</option>
+ <img src="DBS-POSB.jpg" alt="Show img" width="340" height="120"> <br /><br />
+Please Select A Transaction Type <br />
+<select id="transType" onchange="makeCode()" style="width:60%">
 	<option value="Deposit">Cash Deposit</option>
 	<option value="Card">Issue Card</option>
     <option value="Token">Issue Token</option>
 </select>
 	<br />
 <div id="divAmount">
-Amount <br />
-<input id="textAmount" type="text" placeholder="Please Enter Amount" style="width:20%" />
+Please Select The Amount <br />
+<select id="textAmount" onchange="makeCode()" style="width:60%">
+	<option value="50">$50</option>
+	<option value="100">$100</option>
+    <option value="150">$150</option>
+	<option value="200">$200</option>
+	<option value="500">$500</option>
+</select>
 <br />
 </div>	
 <div id="divName">
-Name   
-<br /><input id="text" type="text" placeholder="Please Enter Your Name" style="width:20%" class="inp-fon"/>
+Please Enter Your Name <br />
+<input id="text" type="text" placeholder="Please Enter Your Name" style="width:60%" class="inp-fon"/>
 <br />
 </div>
 <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
@@ -43,6 +48,15 @@ function makeCode () {
 	var amount = document.getElementById("textAmount");
 	var divAmount = document.getElementById("divAmount");
 	
+	if(tran != "Withdraw" && tran != "Deposit")
+	{
+		divAmount.style.display = "none";
+	}
+	else
+	{
+		divAmount.style.display = "block"
+	}
+	
 	if (!elText.value) {
 		//alert("Input a text");
 		//elText.focus();
@@ -55,14 +69,6 @@ function makeCode () {
 		return;
 	}
 	
-	if(tran != "Withdraw" && tran != "Deposit")
-	{
-		divAmount.style.display = "none";
-	}
-	else
-	{
-		divAmount.style.display = "block"
-	}
 	
 	
 	qrcode.makeCode(elText.value+"|"+tran+"|"+amount.value);

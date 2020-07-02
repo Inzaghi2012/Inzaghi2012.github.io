@@ -33,6 +33,10 @@ Please Enter Your Name <br />
 <input id="text" type="text" placeholder="Please Enter Your Name" style="width:60%" class="inp-fon"/>
 <br />
 </div>
+<div id="divName">
+<button id="receipt" type="button"onclick="location.href='Receipt.html'">View Receipt</button>
+</div>
+<br />
 <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
 
 <script type="text/javascript">
@@ -72,6 +76,7 @@ function makeCode () {
 	
 	
 	qrcode.makeCode(elText.value+"|"+tran+"|"+amount.value);
+	setTimeout(showReceiptButton, 5000);
 }
 
 makeCode();
@@ -86,7 +91,7 @@ $("#text").
 		}
 	});
 	
-	$("#textAmount").
+$("#textAmount").
 	on("blur", function () {
 		makeCode();
 	}).
@@ -95,5 +100,9 @@ $("#text").
 			makeCode();
 		}
 	});
+
+function showReceiptButton(){
+	
+	}	
 </script>
 </body>

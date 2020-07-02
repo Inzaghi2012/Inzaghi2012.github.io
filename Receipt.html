@@ -433,6 +433,7 @@
     </style>
   <![endif]-->
   </head>
+
   <body>
     <span class="preheader">This is a receipt for your recent transaction on {{ purchase_date }}. No payment is due with this receipt.</span>
     <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
@@ -458,9 +459,9 @@
                               <table class="purchase" width="100%" cellpadding="0" cellspacing="0" role="presentation">
                           <tr>
                             <td>
-                              <h3>{{receipt_id}}</h3></td>
+                              <h3>Ref. 6666</h3></td>
                             <td>
-                              <h3 class="align-right">{{date}{location}}</h3></td>
+                              <h3 class="align-right" id="datetime">01/07/2020 15:24    DBS MBFC</h3></td>
                           </tr>
                           <tr>
                             <td colspan="2">
@@ -470,21 +471,19 @@
                                     <p class="f-fallback">Transaction Type</p>
                                   </th>
                                   <th class="purchase_heading" align="right">
-                                    <p class="f-fallback">Amount</p>
+                                    <p class="f-fallback" >Amount</p>
                                   </th>
                                 </tr>
-                                {{#each receipt_details}}
                                 <tr>
-                                  <td width="80%" class="purchase_item"><span class="f-fallback">{{description}}</span></td>
-                                  <td class="align-right" width="20%" class="purchase_item"><span class="f-fallback">{{amount}}</span></td>
+                                  <td width="80%" class="purchase_item"><span class="f-fallback" id="span_Id">{{description}}</span></td>
+                                  <td class="align-right" width="20%" class="purchase_item"><span class="f-fallback" id="amount">{{amount}}</span></td>
                                 </tr>
-                                {{/each}}
                                 <tr>
                                   <td width="80%" class="purchase_footer" valign="middle">
                                     <p class="f-fallback purchase_total purchase_total--label">Total</p>
                                   </td>
                                   <td width="20%" class="purchase_footer" valign="middle">
-                                    <p class="f-fallback purchase_total">{{total}}</p>
+                                    <p class="f-fallback purchase_total" id="amountTotal">{{total}}</p>
                                   </td>
                                 </tr>
                               </table>
@@ -495,7 +494,7 @@
                           </tr>
                         </table>
                         
-                        <p>APP CRYPT: </p>
+                        <p>APP CRYPT: CCD46C3582281015</p>
                        
                         <!-- Action -->
                         <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" role="presentation">
@@ -505,7 +504,7 @@
                               <table width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation">
                                 <tr>
                                   <td align="center">
-                                    <a href="{{action_url}}" class="f-fallback button button--blue" target="_blank">Download as PDF</a>
+                                    <a href="index.html" class="f-fallback button button--blue" >Back</a>
                                   </td>
                                 </tr>
                               </table>
@@ -532,4 +531,42 @@
       </tr>
     </table>
   </body>
+<script type="text/javascript">
+	const urlParams = new URLSearchParams(window.location.search);
+	const myParam = urlParams.get('data');
+	var data = myParam.split("|");
+	var name = data[0];
+	var type = data[1];
+	var amount = data[2];
+	//var trans = document.getElementById("transType");
+	//alert(document.getElementById("span_Id").innerHTML);
+	//alert(trans.innerHTML);
+	//document.getElementById("span_Id").innerHTML = type;
+	if(type == "Card")
+	{
+		document.getElementById("span_Id").innerHTML = "Card Issuance" + " - " + name;
+				document.getElementById("amount").innerHTML = "N/A";
+		document.getElementById("amountTotal").innerHTML = "N/A";
+	}
+	if(type == "Withdraw")
+	{
+		document.getElementById("span_Id").innerHTML = "Cash Withdraw";
+		document.getElementById("amount").innerHTML = "$"+amount;
+		document.getElementById("amountTotal").innerHTML = "$"+amount;
+	}
+	if(type == "Token")
+	{
+		document.getElementById("span_Id").innerHTML = "Token Issuance";
+		document.getElementById("amount").innerHTML = "N/A";
+		document.getElementById("amountTotal").innerHTML = "N/A";
+	}
+	
+	var today = new Date();
+var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+var time = today.getHours() + ":" + today.getMinutes();
+var dateTime = date+' '+time;
+document.getElementById("datetime").innerHTML = dateTime + "  DBS MBFC";
+	//alert(myParam);
+	
+  </script>
 </html>

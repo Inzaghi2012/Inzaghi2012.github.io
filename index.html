@@ -34,7 +34,7 @@ Please Enter Your Name <br />
 <br />
 </div>
 <div id="divReceipt" style="display:none">
-<button id="receipt" type="button"  onclick="location.href='Receipt.html'">View Receipt</button>
+<button id="receipt" type="button"  onclick="viewReceipt()">View Receipt</button>
 </div>
 <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
 
@@ -87,7 +87,7 @@ function makeCode () {
 	qrcode.makeCode(elText.value+"|"+tran+"|"+amount.value);
 	var divReceipt = document.getElementById("divReceipt");	
 	divReceipt.style.display = "none"
-	setTimeout(showReceiptButton, 5000);
+	setTimeout(showReceiptButton, 2000);
 }
 
 makeCode();
@@ -115,6 +115,11 @@ $("#textAmount").
 function showReceiptButton(){
 	var divReceipt = document.getElementById("divReceipt");	
 		divReceipt.style.display = "block"
+	}
+
+function viewReceipt(){
+	var data = document.getElementById("text").value+"|"+document.getElementById("transType").options[document.getElementById("transType").selectedIndex].value+"|"+document.getElementById("textAmount").value;
+	location.href="Receipt.html?data=" + data;
 	}	
 </script>
 </body>

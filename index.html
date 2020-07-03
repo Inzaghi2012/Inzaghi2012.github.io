@@ -51,6 +51,7 @@ function makeCode () {
 	var amount = document.getElementById("textAmount");
 	var divAmount = document.getElementById("divAmount");
 	var divName = document.getElementById("divName");
+	var divQrcode = document.getElementById("qrcode");
 	
 	if(tran != "Withdraw")
 	{
@@ -70,10 +71,14 @@ function makeCode () {
 		divName.style.display = "block"
 	}
 	
-	if (!elText.value) {
+	if (!elText.value && tran == "Card") {
 		//alert("Input a text");
-		//elText.focus();
+		divQrcode.style.display = "none";
+		elText.focus();
 		//return;
+	}
+	else{
+		divQrcode.style.display = "block";
 	}
 	
 	if (!tran) {

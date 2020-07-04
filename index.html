@@ -10,8 +10,10 @@
 <body>
 <h1 align="center">DBS 5G Wireless</h1>
  <img src="DBS-POSB.jpg" alt="Show img" width="340" height="120"> <br /><br />
+ <div style="font-size:18px">
 Please Select A Transaction Type <br />
-<select id="transType" onchange="makeCode()" style="width:100%">
+</div>
+<select id="transType" onchange="makeCode()" style="width:100%;height:30px;font-size:18px">
 	<option value="Withdraw">Cash Withdraw</option>
 	<option value="Card">Issue Card</option>
     <option value="Token">Issue Token</option>
@@ -19,8 +21,10 @@ Please Select A Transaction Type <br />
 </select>
 	<br />
 <div id="divAmount" style="display:none">
+<div style="font-size:18px">
 Please Select The Amount <br />
-<select id="textAmount" onchange="makeCode()" style="width:100%">
+</div>
+<select id="textAmount" onchange="makeCode()" style="width:100%;height:30px;font-size:18px">
 	<option value="50">$50</option>
 	<option value="100">$100</option>
     <option value="150">$150</option>

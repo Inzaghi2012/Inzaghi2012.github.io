@@ -544,7 +544,13 @@
 	//document.getElementById("span_Id").innerHTML = type;
 	if(type == "Card")
 	{
-		document.getElementById("span_Id").innerHTML = "Card Issuance" + " - " + name;
+		document.getElementById("span_Id").innerHTML = "Card Issuance";
+				document.getElementById("amount").innerHTML = "N/A";
+		document.getElementById("amountTotal").innerHTML = "N/A";
+	}
+	if(type == "CSO")
+	{
+		document.getElementById("span_Id").innerHTML = "CSO - Other Transactions";
 				document.getElementById("amount").innerHTML = "N/A";
 		document.getElementById("amountTotal").innerHTML = "N/A";
 	}

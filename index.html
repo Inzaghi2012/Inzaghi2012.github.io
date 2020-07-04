@@ -97,7 +97,7 @@ function makeCode () {
 	qrcode.makeCode(elText.value+"|"+tran+"|"+amount.value);
 	var divReceipt = document.getElementById("divReceipt");	
 	divReceipt.style.display = "none"
-	setTimeout(showReceiptButton, 3000);
+	setTimeout(showReceiptButton, 30000);
 }
 
 makeCode();

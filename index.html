@@ -45,8 +45,8 @@ Please Enter Your Name <br />
 
 <script type="text/javascript">
 var qrcode = new QRCode(document.getElementById("qrcode"), {
-	width : 200,
-	height : 200
+	width : 180,
+	height : 180
 });
 
 function makeCode () {		
@@ -97,7 +97,7 @@ function makeCode () {
 	qrcode.makeCode(elText.value+"|"+tran+"|"+amount.value);
 	var divReceipt = document.getElementById("divReceipt");	
 	divReceipt.style.display = "none"
-	setTimeout(showReceiptButton, 30000);
+	setTimeout(showReceiptButton, 45000);
 }
 
 makeCode();
